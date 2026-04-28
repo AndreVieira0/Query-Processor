@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg: #0a0b0f;
+  --surface: #111318;
+  --surface-2: #1a1d26;
+  --surface-3: #222639;
+  --border: #2a2f45;
+  --border-bright: #3d4460;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  --accent-2: #22d3ee;
+  --accent-3: #f59e0b;
+  --success: #10b981;
+  --error: #f43f5e;
+  --text: #e8eaf0;
+  --text-muted: #7c84a0;
+  --text-dim: #4a5068;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Syne', sans-serif;
+  --radius: 8px;
+  --radius-lg: 14px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* React Flow overrides */
+.react-flow__background { background: var(--surface) !important; }
+.react-flow__controls button {
+  background: var(--surface-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+.react-flow__controls button:hover { background: var(--surface-3) !important; color: var(--text) !important; }
+.react-flow__minimap { background: var(--surface-2) !important; border: 1px solid var(--border) !important; }
