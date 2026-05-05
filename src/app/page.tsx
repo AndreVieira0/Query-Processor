@@ -17,6 +17,15 @@ export default function Home() {
   const [result, setResult] = useState<ProcessResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("graph-opt");
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleTheme = useCallback(() => {
+    setDarkMode((prev) => {
+      const next = !prev;
+      document.documentElement.classList.toggle("light-theme", !next);
+      return next;
+    });
+  }, []);
 
   const handleProcess = useCallback((sql: string) => {
     setLoading(true);
@@ -96,6 +105,26 @@ export default function Home() {
         </div>
 
         <div style={{ marginLeft: "auto", display: "flex", gap: 8, alignItems: "center" }}>
+          <button
+            onClick={toggleTheme}
+            style={{
+              background: "var(--surface-2)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius)",
+              padding: "6px 10px",
+              cursor: "pointer",
+              fontSize: 14,
+              color: "var(--text-muted)",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              fontFamily: "var(--font-mono)",
+              transition: "background 0.2s, color 0.2s",
+            }}
+            title={darkMode ? "Alternar para tema claro" : "Alternar para tema escuro"}
+          >
+            {darkMode ? "☀" : "☾"}
+          </button>
           {/* Legend */}
           {[
             { color: "#22d3ee", label: "Relação" },

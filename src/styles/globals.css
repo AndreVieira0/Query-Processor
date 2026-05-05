@@ -22,6 +22,24 @@
   --radius-lg: 14px;
 }
 
+:root.light-theme {
+  --bg: #f5f6fa;
+  --surface: #ffffff;
+  --surface-2: #f0f1f5;
+  --surface-3: #e8e9ef;
+  --border: #d1d5e0;
+  --border-bright: #b8bdd0;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --accent-2: #0891b2;
+  --accent-3: #d97706;
+  --success: #059669;
+  --error: #e11d48;
+  --text: #1a1d2e;
+  --text-muted: #5c6280;
+  --text-dim: #9ca0b8;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -50,3 +68,12 @@ html, body {
 }
 .react-flow__controls button:hover { background: var(--surface-3) !important; color: var(--text) !important; }
 .react-flow__minimap { background: var(--surface-2) !important; border: 1px solid var(--border) !important; }
+
+:root.light-theme .react-flow__background { background: var(--surface) !important; }
+:root.light-theme .react-flow__controls button {
+  background: var(--surface-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+:root.light-theme .react-flow__controls button:hover { background: var(--surface-3) !important; color: var(--text) !important; }
+:root.light-theme .react-flow__minimap { background: var(--surface-2) !important; border: 1px solid var(--border) !important; }

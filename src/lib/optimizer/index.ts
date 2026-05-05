@@ -113,25 +113,37 @@ function pushDownSelections(
   function pushDown(n: RelAlgNode, remaining: string[]): RelAlgNode {
     if (remaining.length === 0) return n;
 
-    const available = tablesOf(n);
-    const [applyNow, defer] = remaining.reduce<[string[], string[]]>(
-      ([now, later], cond) => {
-        const tables = condTables(cond);
-        const canApply = tables.length === 0 || tables.every((t) => available.has(t));
-        return canApply ? [[...now, cond], later] : [now, [...later, cond]];
-      },
-      [[], []]
-    );
+    const toPush = n.children.map(() => [] as string[]);
+    const stayHere: string[] = [];
 
-    // Primeiro, push-down recursivo para filhos
-    const optimizedChildren = n.children.map((child) =>
-      pushDown(child, defer)
-    );
-    const optimizedNode = { ...n, children: optimizedChildren };
+    for (const cond of remaining) {
+      const tables = condTables(cond);
+      let pushed = false;
 
-    // Depois, envolve este nó com as seleções que podem ser aplicadas aqui
-    let result: RelAlgNode = optimizedNode;
-    for (const cond of applyNow) {
+      // Tenta empurrar para algum filho que contenha TODAS as tabelas da condição
+      for (let i = 0; i < n.children.length; i++) {
+        const childTables = tablesOf(n.children[i]);
+        if (tables.length > 0 && tables.every((t) => childTables.has(t))) {
+          toPush[i].push(cond);
+          pushed = true;
+          break;
+        }
+      }
+
+      if (!pushed) {
+        stayHere.push(cond);
+      }
+    }
+
+    // Processa os filhos recursivamente com as condições que foram empurradas
+    const optimizedChildren = n.children.map((child, i) =>
+      pushDown(child, toPush[i])
+    );
+    
+    let result = { ...n, children: optimizedChildren };
+
+    // Aplica as condições que DEVEM ficar neste nível (acima deste nó)
+    for (const cond of stayHere) {
       result = {
         id: `sel_${result.id}`,
         kind: "selection",

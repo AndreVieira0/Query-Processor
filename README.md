@@ -1,8 +1,6 @@
 # Processador de Consultas SQL
 
-**Disciplina:** Banco de Dados  
-**Autores:** Membro 1, Membro 2, Membro 3
-
+**Disciplina:** Projeto de Banco de Dados  
 ## Visão Geral
 
 Aplicação web que processa consultas SQL e exibe:

@@ -11,10 +11,10 @@ const KIND_STYLES: Record<
   RelAlgNode["kind"],
   { bg: string; border: string; icon: string; textColor: string }
 > = {
-  relation:   { bg: "#0f172a",   border: "#22d3ee", icon: "⬛", textColor: "#22d3ee" },
-  selection:  { bg: "#13111f",   border: "#6366f1", icon: "σ",  textColor: "#a5b4fc" },
-  projection: { bg: "#0f1f17",   border: "#10b981", icon: "π",  textColor: "#6ee7b7" },
-  join:       { bg: "#1c1208",   border: "#f59e0b", icon: "⋈",  textColor: "#fcd34d" },
+  relation:   { bg: "var(--surface-2)", border: "#22d3ee", icon: "⬛", textColor: "#22d3ee" },
+  selection:  { bg: "var(--surface-2)", border: "#6366f1", icon: "σ",  textColor: "#6366f1" },
+  projection: { bg: "var(--surface-2)", border: "#10b981", icon: "π",  textColor: "#10b981" },
+  join:       { bg: "var(--surface-2)", border: "#f59e0b", icon: "⋈",  textColor: "#f59e0b" },
 };
 
 export const OperatorNode = memo(({ data }: OperatorNodeProps) => {

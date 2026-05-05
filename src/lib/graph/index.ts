@@ -66,9 +66,9 @@ function collectNodesEdges(
   for (const child of node.children) {
     collectNodesEdges(child, flowNodes, flowEdges);
     flowEdges.push({
-      id: `e_${child.id}_${node.id}`,
-      source: child.id,
-      target: node.id,
+      id: `e_${node.id}_${child.id}`,
+      source: node.id,
+      target: child.id,
       animated: true,
       style: { stroke: "#6366f1", strokeWidth: 2 },
     });
